@@ -15,17 +15,18 @@ public class Main {
         System.out.println("Posición Inicial del caballo: " + posIni);
         casillas[posi] = "♘";
 
-        int posf = (int) (Math.random() * 63 + 0);
+        int posf = (int) (Math.random() * 64); // Generar un número aleatorio entre 0 y 63
         fila = 8 - (posf / 8); // Calcular la fila inicial
         columna = cols[posf % 8]; // Calcular la columna inicial
         String posFin = "" + columna + fila; // Concatenar la columna y la fila
         System.out.println("Posición de Destino del caballo: " + posFin);
         casillas[posf] = "♔";
-        int mina1 = (int) (Math.random() * 63 + 0);
+
+        int mina1 = (int) (Math.random() * 64); // Generar un número aleatorio entre 0 y 63
         casillas[mina1] = "® ";
-        int mina2 = (int) (Math.random() * 63 + 0);
+        int mina2 = (int) (Math.random() * 64); // Generar un número aleatorio entre 0 y 63
         casillas[mina2] = "® ";
-        int mina3 = (int) (Math.random() * 63 + 0);
+        int mina3 = (int) (Math.random() * 64); // Generar un número aleatorio entre 0 y 63
         casillas[mina3] = "® ";
         System.out.println();
         printTableroInicial();
@@ -81,7 +82,7 @@ public class Main {
     }
 
     static boolean verifiCoords(int fila, int columna) {
-        return fila >= 0 && fila < 7 && columna >= 0 && columna < 7;
+        return fila >= 0 && fila < 8 && columna >= 0 && columna < 8;
     }
 
     static ArrayList<String> rutaSegura(String posIni, String posFin) {
@@ -135,7 +136,7 @@ public class Main {
 
     static boolean esMina(int fila, int columna) {
         int index = (8 - fila) * 8 + getColumnIndex(cols[columna]);
-        return casillas[index].equals("® ");
+        return index >= 0 && index < 64 && casillas[index].equals("® ");
     }
 
     static int getIndex(char[] arr, char target) {
@@ -156,4 +157,3 @@ public class Main {
         return -1;
     }
 }
-
